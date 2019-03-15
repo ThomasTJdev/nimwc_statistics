@@ -1,0 +1,35 @@
+/* This plugin style_private.css file will be added to the public folder, but no automated import of the file will be generated */
+
+div#statistics {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid gray;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  max-width: 800px;
+  padding: 10px;
+}
+div#statistics h3 {
+  text-align: center;
+}
+div#statistics div#statisticsFront {
+  text-align: center;
+}
+div#statistics table.statistics {
+  width: 100%;
+}
+div#statistics table.statistics th {
+  background-color: #424242;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+div#statistics table.statistics td.count {
+  text-align: center
+}
+
+div#statistics div.statisticsPlugins,
+div#statistics div.statisticsUsers {
+  text-align: center;
+}

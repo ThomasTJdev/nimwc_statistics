@@ -1,0 +1,120 @@
+#? stdtmpl | standard
+#
+#template `%`(idx: untyped): untyped =
+#  row[idx]
+#end template
+#
+#
+#
+#proc genStatistics*(db: DbConn): string =
+# result = ""
+
+<link rel="stylesheet" href="/css/statistics_private.css">
+
+<div id="statistics">
+
+  <div id="statisticsFront">
+    <h1>Statistics settings</h1>
+
+    # let (n, v, d, u) = pluginExtractDetails("statistics")
+    <div id="pluginDetails">
+      <hr>
+      <div> <b>Package:</b> ${n}</div>
+      <div> <b>Version:</b> ${v}</div>
+      <div> <b>Description:</b><br>${d}</div>
+      <div> <b>URL:</b> <a href="${u}">${u}</a></div>
+      <hr>
+    </div>
+
+  </div>
+
+  <div class="backup buttons is-centered">
+    <a href="/backup/statistics" class="button is-link">Refresh</a>
+  </div>
+
+  <hr>
+
+  # let statsBlogs = getAllRows(db, sql("SELECT name, pubDate, creation, viewCount FROM blog ORDER BY viewCount DESC;"))
+
+  <div class="statisticsItem statisticsBlog">
+    <h3>Blog posts</h3>
+    <table class="statistics table is-bordered is-hoverable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Publication</th>
+          <th>Views</th>
+        </tr>
+      </thead>
+      <tbody>
+        # for item in statsBlogs:
+        <tr>
+          <td>${item[0]}</td>
+          # if item[1] != "":
+          <td>${item[1]}</td>
+          # else:
+          <td>${epochDate(item[2], "YYYY-MM-DD")}</td>
+          # end if
+          <td class="count">${item[3]}</td>
+        </tr>
+        # end for
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  # let statsFiles = getAllRows(db, sql("SELECT url, downloadCount FROM files;"))
+
+  <div class="statisticsItem statisticsFiles">
+    <h3>Files</h3>
+    <table class="statistics table is-bordered is-hoverable">
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Downloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        # for item in statsFiles:
+        <tr>
+          <td>${item[0]}</td>
+          <td class="count">${item[1]}</td>
+        </tr>
+        # end for
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  # var statsPlugins: int
+  # for plugin in split(readFile("plugins/plugin_import.txt"), "\n"):
+  #   statsPlugins += 1
+  # end for
+
+  <div class="statisticsItem statisticsPlugins">
+    <h3>Plugins</h3>
+    <p>Installed plugins:</p>
+    <span class="tag is-info is-large">${statsPlugins}</span>
+  </div>
+
+  <hr>
+
+  # let statsUsersOnline24h = getAllRows(db, sql("SELECT id FROM person WHERE lastOnline > ?"), $(toInt(epochTime()) - 86400)).len()
+  # let statsUsersOnline7d = getAllRows(db, sql("SELECT id FROM person WHERE lastOnline > ?"), $(toInt(epochTime()) - (86400*7))).len()
+
+  <div class="statisticsItem statisticsUsers">
+    <h3>Users</h3>
+    <p>Online last 24 hours:</p>
+    <span class="tag is-info is-large">${statsUsersOnline24h}</span>
+    <br><br>
+    <p>Online last 7 days:</p>
+    <span class="tag is-info is-large">${statsUsersOnline7d}</span>
+  </div>
+
+  <hr>
+
+</div>
+
+#end proc

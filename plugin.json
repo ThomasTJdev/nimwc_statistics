@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Statistics",
+    "foldername": "statistics",
+    "version": "0.1",
+    "url": "https://github.com/ThomasTJdev/nimwc_statistics.git",
+    "method": "git",
+    "tags": [
+      "statistics",
+      "stats"
+    ],
+    "description": "Statistics on registered users, download counts, blog views, e.g.",
+    "license": "MIT",
+    "web": "https://github.com/ThomasTJdev/nimwc_statistics"
+  }
+]

@@ -3,6 +3,7 @@
     "name": "Statistics",
     "foldername": "statistics",
     "version": "0.1",
+    "requires": "5.0",
     "url": "https://github.com/ThomasTJdev/nimwc_statistics.git",
     "method": "git",
     "tags": [
@@ -11,6 +12,8 @@
     ],
     "description": "Statistics on registered users, download counts, blog views, e.g.",
     "license": "MIT",
-    "web": "https://github.com/ThomasTJdev/nimwc_statistics"
+    "web": "https://github.com/ThomasTJdev/nimwc_statistics",
+    "sustainability": "",
+    "email": "codefactory@ttj.dk"
   }
 ]

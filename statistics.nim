@@ -14,13 +14,13 @@ import
 
 from times import epochTime
 
-import ../../nimwcpkg/resources/utils/plugins
+import ../../nimwcpkg/plugins/plugins
 
 when defined(postgres): import db_postgres
 else:                   import db_sqlite
 
 proc pluginInfo() =
-  let (n, v, d, u) = pluginExtractDetails("statistics")
+  let (n, v, d, u) = pluginGetDetails("statistics")
   echo " "
   echo "--------------------------------------------"
   echo "  Package:      " & n
